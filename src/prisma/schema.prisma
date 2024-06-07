@@ -1,0 +1,73 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+model Cart {
+  id        String      @id @default(uuid())
+  createdAt DateTime    @default(now())
+  owner     String      @unique
+  products  CartItem[] 
+}
+
+model Wishlist {
+  id        String      @id @default(uuid())
+  createdAt DateTime    @default(now())
+  owner     String      @unique
+  products  WishlistItem[] 
+}
+
+model Product {
+  id          String     @id 
+  title       String
+  price       Int
+  image       String
+  countInStock Int
+  cartItems   CartItem[]
+  wishlistItems WishlistItem[]
+  colors  ProductColor[]
+  sizes   ProductSize[]
+}
+model CartItem {
+  id        String      @id @default(uuid())
+  productId String
+  product   Product     @relation(fields: [productId], references: [id],onDelete: Cascade)
+  cartId    String
+  cart      Cart        @relation(fields: [cartId], references: [id], onDelete: Cascade) 
+  quantity  Int
+  size     ProductSize? @relation(fields: [sizeId], references: [id])
+  sizeId   String?
+  color   ProductColor? @relation(fields: [colorId], references: [id])
+  colorId   String?
+}
+model ProductColor {
+  id        String      @id 
+  productId String
+  product   Product     @relation(fields: [productId], references: [id],onDelete: Cascade)
+  name     String
+  hex       String
+  cartItems   CartItem[]
+}
+
+model ProductSize {
+  id        String      @id 
+  productId String
+  product   Product     @relation(fields: [productId], references: [id],onDelete: Cascade)
+  cartItems   CartItem[]
+  name     String
+  abbreviation       String
+
+}
+
+model WishlistItem {
+  id        String      @id @default(uuid())
+  productId String
+  product   Product     @relation(fields: [productId], references: [id],onDelete: Cascade)
+  wishlistId    String
+  wishlist      Wishlist   @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+}
