@@ -69,6 +69,6 @@ async function removeItemFromCart(
   }
 }
 
-router.post("/api/v1/cart/:id/", checkUserAuthenticated, removeItemFromCart);
+router.delete("/api/v1/cart/:id/", checkUserAuthenticated, removeItemFromCart);
 
 export { router as removeItemFromCartRouter };

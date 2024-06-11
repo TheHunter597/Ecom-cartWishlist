@@ -52,7 +52,6 @@ async function getWishList(req: Request, res: Response, next: NextFunction) {
       parseInt(process.env.REDIS_EXPIRY as string) || 3600
     );
     let test = await redisClient.get(`${req.user.user_id}-wishlist`);
-    console.log({ test });
 
     res.status(200).json({
       message: "Wishlist retrieved successfully",

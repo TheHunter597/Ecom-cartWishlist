@@ -18,7 +18,6 @@ async function addProductToCart(
 ) {
   try {
     let cart = await cartFinder(req.user.user_id);
-    console.log({ cart });
 
     if (req.body.quantity < 1) {
       return next(

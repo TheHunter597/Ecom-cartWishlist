@@ -51,7 +51,6 @@ async function addProductToWishlist(
         wishlistId: wishlist.id,
       },
     });
-    console.log({ doesProductExist });
 
     if (doesProductExist != null) {
       return next(new BadRequest("Product already exists in wishlist"));

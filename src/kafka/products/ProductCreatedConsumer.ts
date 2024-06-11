@@ -18,8 +18,6 @@ class ProductCreatedConsumer extends BaseConsumer<
     this.consumer = this.createConsumer();
   }
   async consume(): Promise<void> {
-    console.log("consuming");
-
     await this.start();
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }: any) => {

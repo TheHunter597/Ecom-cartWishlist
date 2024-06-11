@@ -37,7 +37,6 @@ describe.skip("removeProductFromCart", () => {
         productId: product.id,
         quantity: 1,
       });
-    console.log({ mangosdf: productCreationresponse.body.cart.products });
 
     const response = await request(app)
       .post(createUrl(productCreationresponse.body.cart.products[0].id))

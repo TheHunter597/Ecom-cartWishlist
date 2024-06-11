@@ -53,7 +53,7 @@ async function getCart(req: Request, res: Response, next: NextFunction) {
       cart,
     });
   } catch (err) {
-    console.log({ dsfsdfdsfds: err });
+    console.log({ err });
     res.status(500).json({ message: "Internal server error" });
   }
 }

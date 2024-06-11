@@ -31,6 +31,6 @@ async function deleteWishlist(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-router.delete("/api/v1/cart/", checkUserAuthenticated, deleteWishlist);
+router.delete("/api/v1/wishlist/", checkUserAuthenticated, deleteWishlist);
 
 export { router as deleteWishlistRouter };

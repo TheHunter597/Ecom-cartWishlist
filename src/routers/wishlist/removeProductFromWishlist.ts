@@ -69,7 +69,7 @@ async function removeItemFromWishlist(
   }
 }
 
-router.post(
+router.delete(
   "/api/v1/wishlist/:id/",
   checkUserAuthenticated,
   removeItemFromWishlist

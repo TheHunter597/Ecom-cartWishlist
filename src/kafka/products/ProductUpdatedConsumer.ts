@@ -23,8 +23,6 @@ class ProductUpdatedConsumer extends BaseConsumer<
       eachMessage: async ({ topic, partition, message }: any) => {
         try {
           let data = JSON.parse(message.value.toString());
-          console.log("got new one");
-
           console.log({ data });
 
           await Client.product.update({
